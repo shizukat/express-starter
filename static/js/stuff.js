@@ -29,3 +29,6 @@ $('#tickleblack').click(function() {
 });
 // Problem 4 (Greet Me) -----------------------------------------------------
 // WRITE CODE HERE
+$('#GreetMe').click(function() {
+  alert('Hello ' + $('#my_name').val());
+});
