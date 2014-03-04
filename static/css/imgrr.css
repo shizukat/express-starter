@@ -1,0 +1,11 @@
+.clickable:hover {
+  /* WRITE CODE HERE */
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.clickableone:hover {
+  /* WRITE CODE HERE */
+	opacity: 0.7;
+	cursor: pointer;
+}
