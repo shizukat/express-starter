@@ -35,15 +35,17 @@ $('.clickable').click(function() {
 
 // Problem 5 (Imgrr) -------------------------------------------------
 // WRITE CODE HERE
-$('.clickableone').click(function() {
-  $(this).attr('height', '500px');
-  $('#big_img').attr('src');
+
+$('.clickable1').click(function() {
+  $('#big_img').attr('src', '/static/img/gorilla.jpg');
 });
 
-/*$('.clickableone').click(function() {
-  $(this).attr('width', '100px');
-  $('#big_img').attr('src', $(this));
-});*/
+$('.clickable2').click(function() {
+  $('#big_img').attr('src', '/static/img/giraffe.jpg');
+});
 
+$('.clickable3').click(function() {
+  $('#big_img').attr('src', '/static/img/red_panda.jpg');
+});
 
 
