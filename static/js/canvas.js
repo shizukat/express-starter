@@ -73,7 +73,7 @@ $(document).ready(function() {
   });
 
   $('#p11').click(function() {
-  	for (var x = 0; x <= 20; x++) {
+  	for (var x = 0; x <= 99; x++) {
   		for (var i = 0; i <= 99; i++){
   			context.strokeRect(x*5, i*5, 5, 5);
   		}
