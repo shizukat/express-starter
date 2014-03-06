@@ -60,4 +60,32 @@ $(document).ready(function() {
   	context.fillRect(10, 10, 200, 200)
   });
 
+  $('#p9').click(function() {
+  	for (var i = 1; i <= 5; i++) {
+        context.strokeRect(i*50, 100, 50, 50);
+    }
+  });
+
+  $('#p10').click(function() {
+  	for (var i = 0; i <= 99; i++) {
+        context.strokeRect(i*5, 100, 5, 5);
+    }
+  });
+
+  $('#p11').click(function() {
+  	for (var x = 0; x <= 20; x++) {
+  		for (var i = 0; i <= 99; i++){
+  			context.strokeRect(x*5, i*5, 5, 5);
+  		}
+  	}
+  	});
+
+  $('#p12').click(function() {
+  	for (var i = 0; i <= 19; i++) {
+  		context.beginPath();
+  		context.arc(100, 100, i*5, 0, 2*Math.PI);
+  		context.stroke();
+  		}
+  	});
+
 });
