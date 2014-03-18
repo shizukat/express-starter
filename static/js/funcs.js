@@ -32,17 +32,21 @@ $(document).ready(function() {
     drawCircle(x-40, y+45, 50, color)
   };
 
-  /*var drawTriangle = function(x, y, sideLen, color) {
+  var drawTriangle = function(x, y, color) {
+    var height = 100 * (Math.sqrt(3)/2);
     context.strokeStyle=color
     context.beginPath();
-    context.moveTo(x, y)
-    context.lineTo(x+sidelen/2, y+math.sqrt(3*sideLen)/2
-
-
-    context.closePath();
+    context.moveTo(x, y);
+    context.lineTo(x+50, y+height);
+    context.lineTo(x-50, y+height);
+    context.lineTo(x,y);
     context.stroke();
-  }*/
+    context.closePath();
+  };
 
+  var triForce = function(x, y, color) {
+    
+  }
 
   // Challenge:
   // Write drawTriangle, drawTriforce, drawTripleTriforce,
@@ -91,5 +95,10 @@ $(document).ready(function() {
 
   //Write your code for p5-p11 here
   //
+  $('#p9').click(function() {
+    drawTriangle(100, 100, 'black')
+    context.fill();
+  });
+
 
 });
