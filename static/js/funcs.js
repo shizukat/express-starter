@@ -44,8 +44,39 @@ $(document).ready(function() {
     context.closePath();
   };
 
-  var triForce = function(x, y, color) {
-    
+  var drawtriForce = function(x, y, color) {
+    drawTriangle(x, y, color)
+    context.fill();
+    drawTriangle(x-50, y+87, color)
+    context.fill();
+    drawTriangle(x+50, y+87, color)
+    context.fill();
+  };
+
+  var drawSmallTriangle = function(x, y, color) {
+    var height = 40 * (Math.sqrt(3)/2);
+    context.strokeStyle=color
+    context.beginPath();
+    context.moveTo(x, y);
+    context.lineTo(x+20, y+height);
+    context.lineTo(x-20, y+height);
+    context.lineTo(x,y);
+    context.stroke();
+    context.closePath();
+  };
+
+  var drawSmallTriforce = function (x, y, color) {
+    drawSmallTriangle(x, y, color)
+    context.fill();
+    drawSmallTriangle(x-20, y+35, color)
+    context.fill();
+    drawSmallTriangle(x+20, y+35, color)
+    context.fill();
+  }
+
+  var drawTripleTriforce = function(x, y, color) {
+    drawSmallTriforce(x, y, color)
+    drawSmallTriforce(x+40, y-70)
   }
 
   // Challenge:
@@ -96,7 +127,16 @@ $(document).ready(function() {
   //Write your code for p5-p11 here
   //
   $('#p9').click(function() {
-    drawTriangle(100, 100, 'black')
+    drawTriangle(100, 100, 50, 'black')
+    context.fill();
+  });
+
+  $('#p10').click(function() {
+    drawtriForce(200, 200, 'black')
+  });
+
+  $('#p11').click(function() {
+    drawSmallTriforce(100, 100, 'black');
     context.fill();
   });
 
