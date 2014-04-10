@@ -35,7 +35,7 @@ $(document).ready(function() {
       ball.vx = -ball.vx;
     };
 
-    if (ball.x === canvas.width) {
+    if (ball.x === canvas.width - 20) {
       ball.vx = -ball.vx;
     };
 
@@ -43,7 +43,7 @@ $(document).ready(function() {
       ball.vy = -ball.vy;
     };
 
-    if (ball.y === canvas.height) {
+    if (ball.y === canvas.height -20) {
       ball.vy = -ball.vy;
     };
 
