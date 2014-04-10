@@ -8,9 +8,23 @@ $(document).ready(function() {
   // PUT STUFF HERE
 
   // Run an interation of the game
+  var numballs = [10];
   var balls = [];
   
-  var b0 = {
+  for (var i = 0; i < numballs; i++) {
+        var b0 = {
+        x:canvas.width * Math.random(),
+        y:canvas.height * Math.random(),
+        radius:20,
+        vx:5 * Math.random(),
+        vy:5 * Math.random()
+      };
+      balls.push(b0);
+  };
+
+
+  
+  /*var b0 = {
     x:40,
     y:40,
     radius:20,
@@ -36,7 +50,7 @@ $(document).ready(function() {
 
   balls.push(b0);
   balls.push(b1);
-  balls.push(b2);
+  balls.push(b2);*/
 
   var updateGame = function() {
     // PUT STUFF HERE
@@ -46,11 +60,15 @@ $(document).ready(function() {
 
 
     for (var i = 0; i < balls.length; i++) {
+
+      balls[i].x = balls[i].x + balls[i].vx;
+      balls[i].y = balls[i].y + balls[i].vy;
+
       if (balls[i].x <= 20) {
       balls[i].vx = -balls[i].vx;
     };
 
-    if (balls[i].x === canvas.width - 20) {
+    if (balls[i].x >= canvas.width - 20) {
       balls[i].vx = -balls[i].vx;
     };
 
@@ -58,7 +76,7 @@ $(document).ready(function() {
       balls[i].vy = -balls[i].vy;
     };
 
-    if (balls[i].y === canvas.height -20) {
+    if (balls[i].y >= canvas.height -20) {
       balls[i].vy = -balls[i].vy;
     };  
   };
@@ -72,16 +90,24 @@ $(document).ready(function() {
     context.fill();
   };
 
-  setTimeout(updateGame,10)
+  requestAnimationFrame(updateGame);
 
 };
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
     // Find the mouse x and y relative to the top-left corner of the canvas
-    var x = e.pageX - $(this).offset().left;
-    var y = e.pageY - $(this).offset().top;
+    var xe = e.pageX - $(this).offset().left;
+    var ye = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
+        var b1 = {
+        x:xe,
+        y:ye,
+        radius:20,
+        vx:5 * Math.random(),
+        vy:5 * Math.random()
+      };
+      balls.push(b1);
   });
 
   updateGame();
