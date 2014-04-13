@@ -15,42 +15,14 @@ $(document).ready(function() {
         var b0 = {
         x:canvas.width * Math.random(),
         y:canvas.height * Math.random(),
-        radius:20,
+        radius:15,
         vx:5 * Math.random(),
         vy:5 * Math.random()
       };
       balls.push(b0);
   };
 
-
-  
-  /*var b0 = {
-    x:40,
-    y:40,
-    radius:20,
-    vx:5,
-    vy:5
-  };
-
-  var b1 = {
-    x:100,
-    y:100,
-    radius:20,
-    vx:5,
-    vy:5
-  };
-
-  var b2 = {
-    x:200,
-    y:200,
-    radius:20,
-    vx:5,
-    vy:5
-  };
-
-  balls.push(b0);
-  balls.push(b1);
-  balls.push(b2);*/
+  var reactions = [];
 
   var updateGame = function() {
     // PUT STUFF HERE
@@ -64,19 +36,19 @@ $(document).ready(function() {
       balls[i].x = balls[i].x + balls[i].vx;
       balls[i].y = balls[i].y + balls[i].vy;
 
-      if (balls[i].x <= 20) {
+      if (balls[i].x <= 15) {
       balls[i].vx = -balls[i].vx;
     };
 
-    if (balls[i].x >= canvas.width - 20) {
+    if (balls[i].x >= canvas.width - 15) {
       balls[i].vx = -balls[i].vx;
     };
 
-    if (balls[i].y <= 20) {
+    if (balls[i].y <= 15) {
       balls[i].vy = -balls[i].vy;
     };
 
-    if (balls[i].y >= canvas.height -20) {
+    if (balls[i].y >= canvas.height -15) {
       balls[i].vy = -balls[i].vy;
     };  
   };
@@ -90,6 +62,13 @@ $(document).ready(function() {
     context.fill();
   };
 
+  for (var i = 0; i < reactions.length; i++) {
+    context.fillStyle='blue';
+    context.beginPath();
+    context.arc(reactions[i].x, reactions[i].y, reactions[i].radius, 0, 2*Math.PI);
+    context.fill();
+  };
+
   requestAnimationFrame(updateGame);
 
 };
@@ -100,14 +79,22 @@ $(document).ready(function() {
     var xe = e.pageX - $(this).offset().left;
     var ye = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-        var b1 = {
+
+    var r1 = {
+      x:xe, 
+      y:ye, 
+      radius:30
+    };
+    
+    reactions.push(r1);
+        /*var b1 = {
         x:xe,
         y:ye,
         radius:20,
         vx:5 * Math.random(),
         vy:5 * Math.random()
       };
-      balls.push(b1);
+      balls.push(b1);*/
   });
 
   updateGame();
