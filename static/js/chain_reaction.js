@@ -63,7 +63,13 @@ $(document).ready(function() {
   };
 
   for (var i = 0; i < reactions.length; i++) {
-    context.fillStyle='blue';
+    if (reactions[i].radius < 30) {
+      reactions[i].radius++;
+    };
+  };
+
+  for (var i = 0; i < reactions.length; i++) {
+    context.fillStyle= 'DeepSkyBlue';
     context.beginPath();
     context.arc(reactions[i].x, reactions[i].y, reactions[i].radius, 0, 2*Math.PI);
     context.fill();
@@ -83,7 +89,7 @@ $(document).ready(function() {
     var r1 = {
       x:xe, 
       y:ye, 
-      radius:30
+      radius:1
     };
     
     reactions.push(r1);
