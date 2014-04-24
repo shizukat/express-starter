@@ -27,18 +27,7 @@ $(document).ready(function() {
   var updateGame = function() {
     // PUT STUFF HERE
 
-    /*for (var i = 0; i < balls.length; i++) {
-        for (var j = 0; j < reactions.length; j++) {
-          var xdiff = balls[i].x - reactions[j].x;
-          var ydiff = balls[i].y - reactions[j].y;
-          var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
-          if (dist < 45) {
-            alert('BOOM');
-          } 
-        }
-      };*/
-        
-
+  
   for (var i = 0; i < balls.length; i++) {
     var collided = false;
       for (var j = 0; j < reactions.length; j++) {
@@ -50,6 +39,12 @@ $(document).ready(function() {
           } 
         };
         if (collided === true) {
+          var newReaction = {
+            x:balls[i].x, 
+            y:balls[i].y, 
+            radius:1
+          };
+          reactions.push(newReaction);
           balls.splice(i, 1);
           i--;
         }  
@@ -122,14 +117,6 @@ $(document).ready(function() {
     };
     
     reactions.push(r1);
-        /*var b1 = {
-        x:xe,
-        y:ye,
-        radius:20,
-        vx:5 * Math.random(),
-        vy:5 * Math.random()
-      };
-      balls.push(b1);*/
   });
 
   updateGame();
