@@ -42,7 +42,8 @@ $(document).ready(function() {
           var newReaction = {
             x:balls[i].x, 
             y:balls[i].y, 
-            radius:1
+            radius:1,
+            timer:0
           };
           reactions.push(newReaction);
           balls.splice(i, 1);
@@ -87,9 +88,17 @@ $(document).ready(function() {
   };
 
   for (var i = 0; i < reactions.length; i++) {
-    if (reactions[i].radius < 30) {
+    reactions[i].timer++;
+    if (reactions[i].timer > 200) {
+      reactions[i].radius--;
+    }
+    else if (reactions[i].radius < 30) {
       reactions[i].radius++;
-    };
+    }
+    if (reactions[i].radius === 0) {
+      reactions.splice(i, 1);
+      i--;
+    }
   };
 
   for (var i = 0; i < reactions.length; i++) {
@@ -113,7 +122,8 @@ $(document).ready(function() {
     var r1 = {
       x:xe, 
       y:ye, 
-      radius:1
+      radius:1,
+      timer:0
     };
     
     reactions.push(r1);
