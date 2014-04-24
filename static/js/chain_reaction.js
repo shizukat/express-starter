@@ -8,8 +8,10 @@ $(document).ready(function() {
   // PUT STUFF HERE
 
   // Run an interation of the game
-  var numballs = [10];
+  var numballs = 10;
   var balls = [];
+  var reacting = false;
+  var numReacted = 0
   
   for (var i = 0; i < numballs; i++) {
         var b0 = {
@@ -48,6 +50,7 @@ $(document).ready(function() {
           reactions.push(newReaction);
           balls.splice(i, 1);
           i--;
+          numReacted++;
         }  
     };
 
@@ -107,14 +110,33 @@ $(document).ready(function() {
     context.arc(reactions[i].x, reactions[i].y, reactions[i].radius, 0, 2*Math.PI);
     context.fill();
   };
-
+  context.fillText("Reactions:" + numReacted, 10, 10);
   requestAnimationFrame(updateGame);
 
 };
 
   // Handle a canvas click event
-  $('#game_canvas').click(function(e) {
+    $('#game_canvas').click(function(e) {
+      if (reacting === false) {
     // Find the mouse x and y relative to the top-left corner of the canvas
+    reacting = true;
+    var xe = e.pageX - $(this).offset().left;
+    var ye = e.pageY - $(this).offset().top;
+    // PUT STUFF HERE
+
+    var r1 = {
+      x:xe, 
+      y:ye, 
+      radius:1,
+      timer:0
+    }
+    reactions.push(r1);
+  }
+}); 
+    
+    /*$('#game_canvas').click(function(e) {
+    // Find the mouse x and y relative to the top-left corner of the canvas
+    var reacting = true;
     var xe = e.pageX - $(this).offset().left;
     var ye = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
@@ -127,7 +149,7 @@ $(document).ready(function() {
     };
     
     reactions.push(r1);
-  });
+    });*/
 
   updateGame();
 });
