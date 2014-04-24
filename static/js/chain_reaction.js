@@ -16,8 +16,8 @@ $(document).ready(function() {
         x:canvas.width * Math.random(),
         y:canvas.height * Math.random(),
         radius:15,
-        vx:5 * Math.random(),
-        vy:5 * Math.random()
+        vx:3 * Math.random(),
+        vy:3 * Math.random()
       };
       balls.push(b0);
   };
@@ -26,6 +26,35 @@ $(document).ready(function() {
 
   var updateGame = function() {
     // PUT STUFF HERE
+
+    /*for (var i = 0; i < balls.length; i++) {
+        for (var j = 0; j < reactions.length; j++) {
+          var xdiff = balls[i].x - reactions[j].x;
+          var ydiff = balls[i].y - reactions[j].y;
+          var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+          if (dist < 45) {
+            alert('BOOM');
+          } 
+        }
+      };*/
+        
+
+  for (var i = 0; i < balls.length; i++) {
+    var collided = false;
+      for (var j = 0; j < reactions.length; j++) {
+          var xdiff = balls[i].x - reactions[j].x;
+          var ydiff = balls[i].y - reactions[j].y;
+          var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+          if (dist < 45) {
+            collided = true;
+          } 
+        };
+        if (collided === true) {
+          balls.splice(i, 1);
+          i--;
+        }  
+    };
+
 
   context.fillStyle='white';
   context.fillRect(0, 0, 800, 600);
