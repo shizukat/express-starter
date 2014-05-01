@@ -8,10 +8,12 @@ $(document).ready(function() {
   // PUT STUFF HERE
 
   // Run an interation of the game
-  var numballs = 10;
+  var numballs = 20;
   var balls = [];
   var reacting = false;
-  var numReacted = 0
+  var numReacted = 0;
+  var gameState = 'Menu';
+  var menuText = 'Click to Play!';
   
   for (var i = 0; i < numballs; i++) {
         var b0 = {
@@ -28,9 +30,16 @@ $(document).ready(function() {
 
   var updateGame = function() {
     // PUT STUFF HERE
+  context.fillStyle='white';
+  context.fillRect(0, 0, 800, 600);
 
-  
-  for (var i = 0; i < balls.length; i++) {
+  if (gameState === "Menu") {
+    context.fillStyle='blue';
+    context.fillText(menuText, 300, 300);
+  }
+
+  else if (gameState === 'playing') {
+   for (var i = 0; i < balls.length; i++) {
     var collided = false;
       for (var j = 0; j < reactions.length; j++) {
           var xdiff = balls[i].x - reactions[j].x;
@@ -53,11 +62,6 @@ $(document).ready(function() {
           numReacted++;
         }  
     };
-
-
-  context.fillStyle='white';
-  context.fillRect(0, 0, 800, 600);
-
 
     for (var i = 0; i < balls.length; i++) {
 
@@ -111,13 +115,38 @@ $(document).ready(function() {
     context.fill();
   };
   context.fillText("Reactions:" + numReacted, 10, 10);
-  requestAnimationFrame(updateGame);
-
+  
+  if (reacting = true && reactions.length === 0) {
+    menuText = 'GameOver! You lose :(';
+    gameState = 'Menu'
+    context.fillStyle= 'DeepSkyBlue';
+    context.fillText(menuText, 300, 300);
+  }
+  };
+  requestAnimationFrame(updateGame); 
+  
 };
+
 
   // Handle a canvas click event
     $('#game_canvas').click(function(e) {
-      if (reacting === false) {
+      if (gameState === 'Menu') {
+        gameState = 'playing';
+        reacting = false;
+        numReacted = 0;
+        balls = [];
+        for (var i = 0; i < numballs; i++) {
+        var b0 = {
+        x:canvas.width * Math.random(),
+        y:canvas.height * Math.random(),
+        radius:15,
+        vx:3 * Math.random(),
+        vy:3 * Math.random()
+      };
+      balls.push(b0);
+  };
+}
+      if (gameState === 'playing' && reacting === false) {
     // Find the mouse x and y relative to the top-left corner of the canvas
     reacting = true;
     var xe = e.pageX - $(this).offset().left;
